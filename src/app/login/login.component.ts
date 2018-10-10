@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
 
   user = {username: '', password: '', remember: false};
+  newUser = {username: '', password: '', firstname: '', lastname: ''};
   errMess: string;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
@@ -18,7 +19,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  onSignUp() {
+    console.log('User: ', this.newUser);
+    this.authService.signUp(this.newUser)
+      .subscribe(res => {
+        if (res.success) {
+          this.dialogRef.close(res.success);
+        } else {
+          console.log(res);
+        }
+      },
+      error => {
+        console.log(error);
+        this.errMess = error;
+      });
+  }
+
+  onLogin() {
     console.log('User: ', this.user);
     this.authService.logIn(this.user)
       .subscribe(res => {

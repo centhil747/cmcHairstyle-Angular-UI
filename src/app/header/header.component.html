@@ -6,18 +6,18 @@
   <a mat-button routerLink="/favorites" routerLinkActive="active"><span class="fa fa-heart fa-lg"></span> My Favorites</a>
   <a mat-button routerLink="/contactus" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
   <span class="flex-spacer"></span>
-  <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
+  <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login/ SignUp</a>
   <a *ngIf="username">{{username}}</a>
   <a *ngIf="username" mat-button (click)="logOut()"><span class="fa fa-sign-out fa-lg"></span> Logout</a>
 </mat-toolbar>
 
 <div class="container jumbotron"
     fxLayout="row"
-    fxLayout.sm="column" 
-    fxLayout.xs="column" 
+    fxLayout.sm="column"
+    fxLayout.xs="column"
     fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center" 
+    fxLayoutAlign.sm="start center"
+    fxLayoutAlign.gt-sm="center center"
     fxLayoutGap="10px">
 
   <div fxFlex fxFlex.gt-sm="50%">

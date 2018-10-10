@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    Login
+    Login/SignUp
   <span class="flex-spacer"></span>
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
@@ -9,24 +9,57 @@
   <h4>{{errMess}}</h4>
 </div>
 
-<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
-
-  <mat-dialog-content>
-    <p>
-      <mat-form-field>
-        <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username"  #username="ngModel" required>
-        <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
-        <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
-      </mat-form-field>
-      <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
-    </p>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <span class="flex-spacer"></span>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Login</button>
-  </mat-dialog-actions>
-</form>
+<mat-tab-group class="demo-tab-group">
+    <mat-tab label="Login">
+        <form novalidate #loginForm="ngForm" (ngSubmit)="onLogin()">
+          <mat-dialog-content>
+            <p>
+              <mat-form-field>
+                <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username"  #username="ngModel" required>
+                <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
+                <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+              </mat-form-field>
+              <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
+            </p>
+          </mat-dialog-content>
+          <mat-dialog-actions>
+            <span class="flex-spacer"></span>
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Login</button>
+          </mat-dialog-actions>
+        </form>
+    </mat-tab>
+    <mat-tab label="SignUp">
+       <form novalidate #signUpForm="ngForm" (ngSubmit)="onSignUp()">
+          <mat-dialog-content>
+            <p>
+              <mat-form-field>
+                <input matInput placeholder="Username" type="text" [(ngModel)]="newUser.username" name="username"  #username="ngModel" required>
+                <mat-error *ngIf="username.errors?.required">Username is empty</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Password" type="password" [(ngModel)]="newUser.password" name="password" #password="ngModel" required>
+                <mat-error *ngIf="password.errors?.required">Password is empty</mat-error>
+              </mat-form-field>
+              <br/>
+              <mat-form-field>
+                <input matInput placeholder="First Name" type="text" [(ngModel)]="newUser.firstName" name="firstname" #firstname="ngModel" required>
+                <mat-error *ngIf="firstname.errors?.required">First Name is empty</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Last Name" type="password" [(ngModel)]="newUser.lastName" name="lastname" #lastname="ngModel" required>
+                <mat-error *ngIf="lastname.errors?.required">Last Name is empty</mat-error>
+              </mat-form-field>
+            </p>
+          </mat-dialog-content>
+          <mat-dialog-actions>
+            <span class="flex-spacer"></span>
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="signUpForm.form.invalid">SignUp</button>
+          </mat-dialog-actions>
+        </form>
+    </mat-tab>
+</mat-tab-group>

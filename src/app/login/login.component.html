@@ -50,7 +50,7 @@
                 <mat-error *ngIf="firstname.errors?.required">First Name is empty</mat-error>
               </mat-form-field>
               <mat-form-field>
-                <input matInput placeholder="Last Name" type="text" [(ngModel)]="newUser.lastName" name="lastname" #lastname="ngModel" required>
+                <input matInput placeholder="Last Name" type="password" [(ngModel)]="newUser.lastName" name="lastname" #lastname="ngModel" required>
                 <mat-error *ngIf="lastname.errors?.required">Last Name is empty</mat-error>
               </mat-form-field>
             </p>

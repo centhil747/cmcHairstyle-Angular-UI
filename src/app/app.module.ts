@@ -24,10 +24,9 @@ import { AppComponent } from './app.component';
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
-import { PicturedetailComponent } from './picturedetail/picturedetail.component';
+import { DishdetailComponent } from './dishdetail/dishdetail.component';
 
 import { DishService } from './services/dish.service';
-import { PictureService } from './services/picture.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
@@ -51,14 +50,12 @@ import { baseURL } from './shared/baseurl';
 import { HighlightDirective } from './directives/highlight.directive';
 import { FavoritesComponent } from './favorites/favorites.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import { GroupPictureComponent } from './group-picture/group-picture.component';
-import { SoloPictureComponent } from './solo-picture/solo-picture.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    PicturedetailComponent,
+    DishdetailComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -66,9 +63,7 @@ import { SoloPictureComponent } from './solo-picture/solo-picture.component';
     ContactComponent,
     LoginComponent,
     HighlightDirective,
-    FavoritesComponent,
-    GroupPictureComponent,
-    SoloPictureComponent
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +90,6 @@ import { SoloPictureComponent } from './solo-picture/solo-picture.component';
   ],
   providers: [
     DishService,
-    PictureService,
     PromotionService,
     LeaderService,
     {provide: 'baseURL', useValue: baseURL},

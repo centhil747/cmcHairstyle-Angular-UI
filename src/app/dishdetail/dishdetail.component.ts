@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { visibility, flyInOut, expand } from '../animations/app.animation';
-import { Picture } from '../shared/picture';
+import { Dish } from '../shared/dish';
 import { Comment } from '../shared/comment';
-import { PictureService } from '../services/picture.service';
+import { DishService } from '../services/dish.service';
 import { FavoriteService } from '../services/favorite.service';
 
 import { Params, ActivatedRoute } from '@angular/router';
@@ -12,9 +12,9 @@ import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-picturedetail',
-  templateUrl: './picturedetail.component.html',
-  styleUrls: ['./picturedetail.component.scss'],
+  selector: 'app-dishdetail',
+  templateUrl: './dishdetail.component.html',
+  styleUrls: ['./dishdetail.component.scss'],
   // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
@@ -26,12 +26,12 @@ import { switchMap } from 'rxjs/operators';
     expand()
   ]
 })
-export class PicturedetailComponent implements OnInit {
+export class DishdetailComponent implements OnInit {
 
   @ViewChild('cform') commentFormDirective;
-  picture: Picture;
-  picturecopy: Picture;
-  pictureIds: string[];
+  dish: Dish;
+  dishcopy: Dish;
+  dishIds: string[];
   prev: string;
   next: string;
   comment: Comment;
@@ -51,7 +51,7 @@ export class PicturedetailComponent implements OnInit {
 
   commentForm: FormGroup;
 
-  constructor(private pictureService: PictureService,
+  constructor(private dishservice: DishService,
     private favoriteService: FavoriteService,
     private route: ActivatedRoute,
     private location: Location,
@@ -61,23 +61,23 @@ export class PicturedetailComponent implements OnInit {
   ngOnInit() {
     this.createForm();
 
-    this.pictureService.getPictureIds().subscribe(pictureIds => this.pictureIds = pictureIds);
-    this.route.params.pipe(switchMap((params: Params) => { this.visibility = 'hidden'; return this.pictureService.getPicture(params['id']); }))
-    .subscribe(picture => {
-      this.picture = picture;
-      this.setPrevNext(picture._id);
+    this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+    this.route.params.pipe(switchMap((params: Params) => { this.visibility = 'hidden'; return this.dishservice.getDish(params['id']); }))
+    .subscribe(dish => {
+      this.dish = dish;
+      this.setPrevNext(dish._id);
       this.visibility = 'shown';
-      this.favoriteService.isFavorite(this.picture._id)
+      this.favoriteService.isFavorite(this.dish._id)
       .subscribe(resp => { console.log(resp); this.favorite = <boolean>resp.exists; },
           err => console.log(err));
     },
     errmess => this.errMess = <any>errmess);
   }
 
-  setPrevNext(pictureId: string) {
-    const index = this.pictureIds.indexOf(pictureId);
-    this.prev = this.pictureIds[(this.pictureIds.length + index - 1) % this.pictureIds.length];
-    this.next = this.pictureIds[(this.pictureIds.length + index + 1) % this.pictureIds.length];
+  setPrevNext(dishId: string) {
+    const index = this.dishIds.indexOf(dishId);
+    this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
+    this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
   }
 
   goBack(): void {
@@ -97,8 +97,8 @@ export class PicturedetailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.pictureService.postComment(this.picture._id, this.commentForm.value)
-      .subscribe(picture => this.picture = <Picture>picture);
+    this.dishservice.postComment(this.dish._id, this.commentForm.value)
+      .subscribe(dish => this.dish = <Dish>dish);
     this.commentFormDirective.resetForm();
     this.commentForm.reset({
       rating: 5,
@@ -128,7 +128,7 @@ export class PicturedetailComponent implements OnInit {
 
   addToFavorites() {
     if (!this.favorite) {
-      this.favoriteService.postFavorite(this.picture._id)
+      this.favoriteService.postFavorite(this.dish._id)
         .subscribe(favorites => { console.log(favorites); this.favorite = true; });
     }
   }

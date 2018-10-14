@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import * as _ from "lodash";
 import { Picture } from '../shared/picture';
-import { Dish } from '../shared/dish';
 import { PictureService } from '../services/picture.service';
 import { flyInOut , expand} from '../animations/app.animation';
 
@@ -28,11 +26,7 @@ export class SoloPictureComponent implements OnInit {
   @Inject('baseURL') private BaseURL) { }
 
   ngOnInit() {
-    /*this.pictureService.getSoloPictures()
-      .subscribe(pictures => {this.pictures =  _.filter(pictures, {type: "solo"});
-      console.log("+++" + this.pictures);},
-        errmess => this.errMess = <any>errmess);*/
-      this.pictureService.getPictures()
+      this.pictureService.getSoloPictures()
       .subscribe(pictures => this.pictures =  pictures,
         errmess => this.errMess = <any>errmess);
 

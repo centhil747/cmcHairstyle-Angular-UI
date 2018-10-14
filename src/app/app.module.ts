@@ -28,8 +28,7 @@ import { PicturedetailComponent } from './picturedetail/picturedetail.component'
 
 import { DishService } from './services/dish.service';
 import { PictureService } from './services/picture.service';
-import { PromotionService } from './services/promotion.service';
-import { LeaderService } from './services/leader.service';
+import { FamilyService } from './services/family.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { FeedbackService } from './services/feedback.service';
 import { AuthService } from './services/auth.service';
@@ -96,8 +95,7 @@ import { SoloPictureComponent } from './solo-picture/solo-picture.component';
   providers: [
     DishService,
     PictureService,
-    PromotionService,
-    LeaderService,
+    FamilyService,
     {provide: 'baseURL', useValue: baseURL},
     ProcessHTTPMsgService,
     FeedbackService,

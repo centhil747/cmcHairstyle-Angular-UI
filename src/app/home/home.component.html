@@ -5,67 +5,61 @@
      fxLayoutAlign.gt-md="space-around center"
      fxLayoutGap="10px">
 
-    <mat-card *ngIf="dish" fxFlex [@expand] routerLink="/solo">
+    <mat-card *ngIf="soloPic" fxFlex [@expand] routerLink="/solo">
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>
-          <h3>{{dish.name | uppercase}}</h3>
+            <h3>Solo Pictures</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{ baseURL + dish.image}}" alt={{dish.name}}>
+      <img mat-card-image src="{{ baseURL + soloPic.image}}" alt={{soloPic.name}}>
       <mat-card-content>
-        <p>{{dish.description}}
+        <p>{{soloPic.description}}
         </p>
       </mat-card-content>
     </mat-card>
-    <div [hidden]="dish || dishErrMess">
-        <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-    </div>
-    <div *ngIf="dishErrMess">
+    <div *ngIf="soloPicErrMess">
       <h2>Error</h2>
-      <h4>{{dishErrMess}}</h4>
+      <h4>{{soloPicErrMess}}</h4>
     </div>
 
-    <mat-card *ngIf="promotion" fxFlex [@expand] routerLink="/group">
+    <mat-card *ngIf="groupPic" fxFlex [@expand] routerLink="/group">
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>
-          <h3>{{promotion.name | uppercase}}</h3>
+          <h3>Group Pictures</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{ baseURL + promotion.image }}" alt={{promotion.name}}>
+      <img mat-card-image src="{{ baseURL + groupPic.image }}" alt={{groupPic.name}}>
       <mat-card-content>
-        <p>{{promotion.description}}
+        <p>{{groupPic.description}}
         </p>
       </mat-card-content>
     </mat-card>
-    <div [hidden]="promotion || promoErrMess">
+    <div [hidden]="(soloPic || soloPicErrMess) && (groupPic || groupPicErrMess) && (family || familyErrMess)">
         <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
     </div>
-    <div *ngIf="promoErrMess">
+    <div *ngIf="groupPicErrMess">
       <h2>Error</h2>
-      <h4>{{promoErrMess}}</h4>
+      <h4>{{groupPicErrMess}}</h4>
     </div>
 
-    <mat-card *ngIf="leader" fxFlex [@expand] routerLink="/aboutme">
+    <mat-card *ngIf="family" fxFlex [@expand] routerLink="/aboutme">
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>
-          <h3>{{leader.name | uppercase}} {{leader.abbr}}</h3>
+          <h3>Family</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{ baseURL + leader.image }}" alt={{leader.name}}>
+      <img mat-card-image src="{{ baseURL + family.image }}" alt={{family.name}}>
       <mat-card-content>
-        <p>{{leader.designation}}</p>
-        <p>{{leader.description}}
+        <p>{{family.designation}}</p>
+        <p>{{family.description}}
         </p>
       </mat-card-content>
     </mat-card>
-    <div [hidden]="leader || leaderErrMess">
-        <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-    </div>
-    <div *ngIf="leaderErrMess">
+    <div *ngIf="familyErrMess">
       <h2>Error</h2>
-      <h4>{{leaderErrMess}}</h4>
+      <h4>{{familyErrMess}}</h4>
     </div>
 </div>

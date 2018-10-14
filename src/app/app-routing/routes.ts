@@ -18,6 +18,6 @@ export const routes: Routes = [
   { path: 'contactus',     component: ContactComponent },
   { path: 'solo', component: SoloPictureComponent },
   { path: 'group', component: GroupPictureComponent },
-  { path: 'dishdetail/:id',     component: PicturedetailComponent }
+  { path: 'picturedetail/:id',     component: PicturedetailComponent }
 
 ];

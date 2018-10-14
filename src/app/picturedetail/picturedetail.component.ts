@@ -66,7 +66,7 @@ export class PicturedetailComponent implements OnInit {
     .subscribe(picture => {
       this.picture = picture;
       this.setPrevNext(picture._id);
-      this.visibility = 'shown';
+      this.visibility = 'shown'; 
       this.favoriteService.isFavorite(this.picture._id)
       .subscribe(resp => { console.log(resp); this.favorite = <boolean>resp.exists; },
           err => console.log(err));

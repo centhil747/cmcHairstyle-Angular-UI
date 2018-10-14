@@ -15,23 +15,48 @@ export class PictureService {
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
-  getPictures(): Observable<Picture[]> {
-    return this.http.get<Picture[]>(baseURL + 'Pictures')
-      .pipe(catchError(this.processHTTPMsgService.handleError));
-  }
-
   getPicture(id: string): Observable<Picture> {
     return this.http.get<Picture>(baseURL + 'Pictures/' + id)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
-  getFeaturedPicture(): Observable<Picture> {
-    return this.http.get<Picture[]>(baseURL + 'Pictures?featured=true').pipe(map(Picturees => Picturees[0]))
+  getSoloPictures(): Observable<Picture[]> {
+    return this.http.get<Picture[]>(baseURL + 'Pictures?type=solo')
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+
+  getGroupPictures(): Observable<Picture[]> {
+    return this.http.get<Picture[]>(baseURL + 'Pictures?type=group')
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+
+  getPictures(): Observable<Picture[]> {
+    return this.http.get<Picture[]>(baseURL + 'Pictures')
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+
+  getFeaturedSoloPicture(): Observable<Picture> {
+    return this.http.get<Picture[]>(baseURL + 'Pictures?type=solo&featured=true').pipe(map(pictures => pictures[0]))
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+
+  getFeaturedGroupPicture(): Observable<Picture> {
+    return this.http.get<Picture[]>(baseURL + 'Pictures?type=group&featured=true').pipe(map(pictures => pictures[0]))
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getPictureIds(): Observable<number[] | any> {
-    return this.getPictures().pipe(map(Picturees => Picturees.map(Picture => Picture._id)))
+    return this.getPictures().pipe(map(pictures => pictures.map(Picture => Picture._id)))
+      .pipe(catchError(error => error));
+  }
+
+  getSoloPictureIds(): Observable<number[] | any> {
+    return this.getPictures().pipe(map(pictures => pictures.map(Picture => Picture._id)))
+      .pipe(catchError(error => error));
+  }
+
+  getGroupPictureIds(): Observable<number[] | any> {
+    return this.getPictures().pipe(map(pictures => pictures.map(Picture => Picture._id)))
       .pipe(catchError(error => error));
   }
 

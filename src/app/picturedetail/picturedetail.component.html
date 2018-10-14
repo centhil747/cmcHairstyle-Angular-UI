@@ -8,38 +8,38 @@
 
   <div fxFlex="100">
     <div>
-      <h3 *ngIf="dish">{{dish.name | uppercase}}</h3>
+      <h3 *ngIf="picture">{{picture.name | uppercase}}</h3>
       <hr>
     </div>
   </div>
 
-  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
+  <div fxFlex="40" *ngIf="picture" [@visibility]="visibility" [@expand]>
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <h3>{{dish.name | uppercase}}</h3>
+          <h3>{{picture.name | uppercase}}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{ baseURL + dish.image}}" alt={{dish.name}}>
+      <img mat-card-image src="{{ baseURL + picture.image}}" alt={{picture.name}}>
       <mat-card-content>
-        <p>{{dish.description}}
+        <p>{{picture.description}}
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
+        <button mat-button [routerLink]="['/picturedetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
         <button mat-button (click)="goBack()"><span class="fa fa-arrow-left fa-lg"></span></button>
         <button mat-button (click)="addToFavorites()"><span class="{{favorite ? 'fa fa-heart fa-lg' : 'fa fa-heart-o fa-lg'}}"></span></button>
         <button mat-button><span class="fa fa-share fa-lg"></span></button>
         <span class="flex-spacer"></span>
-        <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
+        <button mat-button [routerLink]="['/picturedetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
       </mat-card-actions>
     </mat-card>
   </div>
 
-  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
+  <div fxFlex="40" *ngIf="picture" [@visibility]="visibility" [@expand]>
     <mat-list>
       <h3>Comments</h3>
-      <mat-list-item *ngFor="let comment of dish.comments">
+      <mat-list-item *ngFor="let comment of picture.comments">
         <h4 matLine> {{comment.comment}} </h4>
         <p matLine> {{comment.rating}} Stars</p>
         <p matLine>
@@ -58,7 +58,7 @@
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
     </form>
   </div>
-  <div [hidden]="dish || errMess">
+  <div [hidden]="picture || errMess">
       <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
   <div *ngIf="errMess">

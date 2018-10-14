@@ -1,8 +1,8 @@
-export class Leader {
+export class Family {
     _id: string;
     name: string;
     image: string;
-    designation: string;
+    relation: string;
     abbr: string;
     featured: boolean;
     description: string;

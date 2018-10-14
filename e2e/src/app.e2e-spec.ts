@@ -23,7 +23,7 @@ describe('workspace-project App', () => {
   });
 
   it('should enter a new comment for the first dish', () => {
-    page.navigateTo('/dishdetail/0');
+    page.navigateTo('/picturedetail/0');
 
     const newAuthor = page.getElement('input[type=text]');
     newAuthor.sendKeys('Test Author');

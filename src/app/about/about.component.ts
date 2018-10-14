@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Leader } from '../shared/leader';
-import { LeaderService } from '../services/leader.service';
+import { Family } from '../shared/family';
+import { FamilyService } from '../services/family.service';
 import { flyInOut, expand } from '../animations/app.animation';
 
 @Component({
@@ -19,15 +19,15 @@ import { flyInOut, expand } from '../animations/app.animation';
 })
 export class AboutComponent implements OnInit {
 
-  leaders: Leader[];
+  wholeFamily: Family[];
   errMess: string;
 
-  constructor(private leaderservice: LeaderService,
+  constructor(private familyservice: FamilyService,
     @Inject('baseURL') private baseURL) { }
 
   ngOnInit() {
-    this.leaderservice.getLeaders()
-      .subscribe(leaders => this.leaders = leaders,
+    this.familyservice.getFamilyDetails()
+      .subscribe(family => this.wholeFamily = family,
         errmess => this.errMess = <any>errmess);
   }
 

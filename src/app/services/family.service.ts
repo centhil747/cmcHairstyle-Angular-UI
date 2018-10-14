@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Leader } from '../shared/leader';
+import { Family } from '../shared/family';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,23 +9,23 @@ import { ProcessHTTPMsgService } from './process-httpmsg.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LeaderService {
+export class FamilyService {
 
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
-  getLeaders(): Observable<Leader[]> {
-    return this.http.get<Leader[]>(baseURL + 'leaders')
+  getFamilyDetails(): Observable<Family[]> {
+    return this.http.get<Family[]>(baseURL + 'family?featured=false')
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
-  getLeader(id: string): Observable<Leader> {
-    return this.http.get<Leader>(baseURL + 'leaders/' + id)
+  getFamilyDetail(id: string): Observable<Family> {
+    return this.http.get<Family>(baseURL + 'family/' + id)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
-  getFeaturedLeader(): Observable<Leader> {
-    return this.http.get<Leader[]>(baseURL + 'leaders?featured=true').pipe(map(leaders => leaders[0]))
+  getFeaturedFamily(): Observable<Family> {
+    return this.http.get<Family[]>(baseURL + 'family?featured=true').pipe(map(Familys => Familys[0]))
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 }

@@ -4,7 +4,7 @@
 
   <div fxFlex>
     <div>
-        <h3>About Us</h3>
+        <h3>About Me</h3>
         <hr>
     </div>
   </div>
@@ -12,8 +12,8 @@
   <div fxFlex>
     <div fxLayout="column" fxLayout.gt-sm="row">
       <div fxFlex="70">
-        <h2>Our History</h2>
-        <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
+        <h2>Our Family Tree</h2>
+        <p>Started in 1987, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
         <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
       </div>
       <div fxFlex="30">
@@ -26,13 +26,11 @@
           <mat-card-content>
             <dl>
               <dt>Started</dt>
-              <dd>3 Feb. 2013</dd>
-              <dt>Major Stake Holder</dt>
-              <dd>HK Fine Foods Inc.</dd>
-              <dt>Last Year's Turnover</dt>
-              <dd>$1,250,375</dd>
-              <dt>Employees</dt>
-              <dd>40</dd>
+              <dd>27 Aug. 1987</dd>
+              <dt>Valley's Family</dt>
+              <dd>Just began.</dd>
+              <dt>Members</dt>
+              <dd>5</dd>
             </dl>
           </mat-card-content>
         </mat-card>
@@ -43,11 +41,10 @@
   <div fxFlex>
     <mat-card>
       <blockquote>
-        <h3>You better cut the pizza in four pieces because
-            I'm not hungry enough to eat six.</h3>
-        <footer>-- Yogi Berra,
-          <cite>The Wit and Wisdom of Yogi Berra,
-            P. Pepe, Diversion Books, 2014</cite>
+        <h3>Family tree branched out and let 3 precious fruits out of it</h3>
+        <footer>-- Anonymous,
+          <cite>Anonymous at Anonymous city,
+            Anonymous State, 2018</cite>
         </footer>
       </blockquote>
     </mat-card>
@@ -55,17 +52,17 @@
 
 
   <div fxFlex>
-    <h2>Corporate Leadership</h2>
-    <mat-list *ngIf="leaders" [@expand]>
-        <mat-list-item *ngFor="let leader of leaders">
-          <img mat-list-avatar src="{{ baseURL + leader.image }}" alt={{leader.name}}>
-          <h4 matLine> {{leader.name}} {{leader.abbr}}</h4>
-            <p matLine> {{leader.designation}}</p>
-            <p matLine>{{leader.description}}
+    <h2>Family Tree Structure</h2>
+    <mat-list *ngIf="wholeFamily" [@expand]>
+        <mat-list-item *ngFor="let family of wholeFamily">
+          <img mat-list-avatar src="{{ baseURL + family.image }}" alt={{family.name}}>
+          <h4 matLine> {{family.name}} {{family.abbr}}</h4>
+            <p matLine> {{family.designation}}</p>
+            <p matLine>{{family.description}}
             </p>
         </mat-list-item>
       </mat-list>
-      <div [hidden]="leaders || errMess">
+      <div [hidden]="wholeFamily || errMess">
           <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
       </div>
       <div *ngIf="errMess">

@@ -19,7 +19,7 @@ fxLayoutGap="10px">
 <div fxFlex *ngIf="favorites" [@expand]>
 <mat-grid-list cols="2" rowHeight="200px">
  <mat-grid-tile *ngFor="let dish of favorites.dishes">
-   <div [routerLink]="['/dishdetail', dish._id]" appHighlight>
+   <div [routerLink]="['/picturedetail', dish._id]" appHighlight>
    <img height="200px" src="{{baseURL + dish.image}}" alt={{dish.name}}>
    </div>
    <mat-grid-tile-footer>

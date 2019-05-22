@@ -22,6 +22,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
+import { SocialLoginModule } from 'angular-6-social-login';
+import {
+        AuthServiceConfig,
+        GoogleLoginProvider,
+        FacebookLoginProvider,
+        LinkedinLoginProvider } from 'angular-6-social-login';
+
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { PicturedetailComponent } from './picturedetail/picturedetail.component';
@@ -41,7 +48,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { SocialLoginComponent } from './social-login/social-login.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 
@@ -52,6 +59,25 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { GroupPictureComponent } from './group-picture/group-picture.component';
 import { SoloPictureComponent } from './solo-picture/solo-picture.component';
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('624796833023-clhjgupm0pu6vgga7k5i5bsfp6qp6egh.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('247840362546370')
+  },
+  {
+    id: LinkedinLoginProvider.PROVIDER_ID,
+    provider: new LinkedinLoginProvider('78iqy5cu2e1fgr')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -67,7 +93,8 @@ import { SoloPictureComponent } from './solo-picture/solo-picture.component';
     HighlightDirective,
     FavoritesComponent,
     GroupPictureComponent,
-    SoloPictureComponent
+    SoloPictureComponent,
+    SocialLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +117,8 @@ import { SoloPictureComponent } from './solo-picture/solo-picture.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
   providers: [
     DishService,
@@ -111,11 +139,17 @@ import { SoloPictureComponent } from './solo-picture/solo-picture.component';
       provide: HTTP_INTERCEPTORS,
       useClass: UnauthorizedInterceptor,
       multi: true
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
     }
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,
+    SocialLoginComponent
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

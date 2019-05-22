@@ -10,7 +10,7 @@
   </div>
 
   <div fxFlex *ngIf="pictures" [@expand]>
-    <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-list cols="3" rowHeight="200px">
       <mat-grid-tile *ngFor="let picture of pictures" [routerLink]="['/picturedetail', picture._id]" appHighlight>
         <img height="200px" src="{{ baseURL + picture.image}}" alt={{picture.name}}>
         <mat-grid-tile-footer>

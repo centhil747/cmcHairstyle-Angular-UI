@@ -96,6 +96,10 @@ export class PicturedetailComponent implements OnInit {
     this.onValueChanged(); // (re)set validation messages now
   }
 
+  isObjectEmpty = function(card){
+    return Object.keys(card).length === 0;
+  }
+
   onSubmit() {
     this.pictureService.postComment(this.picture._id, this.commentForm.value)
       .subscribe(picture => this.picture = <Picture>picture);

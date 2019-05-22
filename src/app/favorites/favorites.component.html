@@ -18,14 +18,14 @@ fxLayoutGap="10px">
 <div *ngIf="favorites || errMess; else loading">
 <div fxFlex *ngIf="favorites" [@expand]>
 <mat-grid-list cols="2" rowHeight="200px">
- <mat-grid-tile *ngFor="let dish of favorites.dishes">
-   <div [routerLink]="['/picturedetail', dish._id]" appHighlight>
-   <img height="200px" src="{{baseURL + dish.image}}" alt={{dish.name}}>
+ <mat-grid-tile *ngFor="let picture of favorites.pictures">
+   <div [routerLink]="['/picturedetail', picture._id]" appHighlight>
+   <img height="200px" src="{{baseURL + picture.image}}" alt={{picture.name}}>
    </div>
    <mat-grid-tile-footer>
-     <h1 mat-line>{{dish.name | uppercase}}</h1>
+     <h1 mat-line>{{picture.name | uppercase}}</h1>
      <span class="flex-spacer"></span>
-     <button mat-icon-button *ngIf="delete" (click)="deleteFavorite(dish._id)">
+     <button mat-icon-button *ngIf="delete" (click)="deleteFavorite(picture._id)">
        <span style="color: red;" class="fa fa-times fa-lg"></span>
      </button>
    </mat-grid-tile-footer>

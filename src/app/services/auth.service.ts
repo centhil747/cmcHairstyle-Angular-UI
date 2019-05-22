@@ -102,6 +102,15 @@ export class AuthService {
         catchError(error => this.processHTTPMsgService.handleError(error)));
    }
 
+   socialLogIn(user: any): Observable<any> {
+     return this.http.get<AuthResponse>(baseURL + 'users/facebook/token' + user.SocialUser)
+       .pipe( map(res => {
+           this.storeUserCredentials({username: user.username, token: res.token});
+           return {'success': true, 'username': user.username };
+       }),
+        catchError(error => this.processHTTPMsgService.handleError(error)));
+   }
+
    logOut() {
      this.destroyUserCredentials();
    }

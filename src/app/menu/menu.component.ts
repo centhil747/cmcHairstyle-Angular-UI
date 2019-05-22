@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { Picture } from '../shared/picture';
 import { PictureService } from '../services/picture.service';
 import { flyInOut, expand } from '../animations/app.animation';
@@ -25,9 +26,17 @@ export class MenuComponent implements OnInit {
   selectedPic: Picture;
 
   constructor(private pictureService: PictureService,
+    private router: Router,
     @Inject('baseURL') private baseURL) { }
 
   ngOnInit() {
+    this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        document.body.scrollTop = 0;
+    });
+
     this.pictureService.getPictures()
       .subscribe(pictures => this.pictures = pictures,
         errmess => this.errMess = <any>errmess);

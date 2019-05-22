@@ -13,8 +13,8 @@
     <div fxLayout="column" fxLayout.gt-sm="row">
       <div fxFlex="70">
         <h2>Our Family Tree</h2>
-        <p>Started in 1987, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
-        <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
+        <p>A journey began in 1987 with a bonding in the name of marriage. Aug 28 is the date, when the seed for the tree was planted. The tree has seen lots of hurricanes, came across n number of struggles and now it’s in a stage where the tree lives as an epitome for other plants who are in their budding stages and give them confidence not to give-up. Finally, about the fruits from the tree. A strange happening, 3 different variety of fruits from the same tree. An <b>A</b>pple, A <b>V</b>oavanga and a <b>C</b>antaloupe.</p>
+        <p>Our family tree has touched a milestone of 30th Anniversary by this 2018. <em>The Valleys</em>, a successful chain by the bonding of Kala and Valliappan.</p>
       </div>
       <div fxFlex="30">
         <mat-card>
@@ -56,8 +56,7 @@
     <mat-list *ngIf="wholeFamily" [@expand]>
         <mat-list-item *ngFor="let family of wholeFamily">
           <img mat-list-avatar src="{{ baseURL + family.image }}" alt={{family.name}}>
-          <h4 matLine> {{family.name}} {{family.abbr}}</h4>
-            <p matLine> {{family.designation}}</p>
+          <h4 matLine> {{family.name}} - {{family.relation}}</h4>
             <p matLine>{{family.description}}
             </p>
         </mat-list-item>

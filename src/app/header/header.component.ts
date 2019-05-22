@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
+import { SocialLoginComponent } from '../social-login/social-login.component';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -35,6 +36,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
           console.log(result);
         });
     }
+
+    openSocialLoginForm() {
+      const loginRef = this.dialog.open(SocialLoginComponent, {width: '500px', height: '450px'});
+
+      loginRef.afterClosed()
+        .subscribe(result => {
+          console.log(result);
+        });
+    }
+
 
     logOut() {
       this.username = undefined;

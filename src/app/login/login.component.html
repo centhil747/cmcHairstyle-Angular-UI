@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar">
     Login/SignUp
   <span class="flex-spacer"></span>
   <button mat-button mat-dialog-close>&times;</button>
@@ -18,7 +18,7 @@
                 <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username"  #username="ngModel" required>
                 <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field class="left-spacing">
                 <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
                 <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
               </mat-form-field>
@@ -40,7 +40,7 @@
                 <input matInput placeholder="Username" type="text" [(ngModel)]="newUser.username" name="username"  #username="ngModel" required>
                 <mat-error *ngIf="username.errors?.required">Username is empty</mat-error>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field class="left-spacing">
                 <input matInput placeholder="Password" type="password" [(ngModel)]="newUser.password" name="password" #password="ngModel" required>
                 <mat-error *ngIf="password.errors?.required">Password is empty</mat-error>
               </mat-form-field>
@@ -49,7 +49,7 @@
                 <input matInput placeholder="First Name" type="text" [(ngModel)]="newUser.firstName" name="firstname" #firstname="ngModel" required>
                 <mat-error *ngIf="firstname.errors?.required">First Name is empty</mat-error>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field class="left-spacing">
                 <input matInput placeholder="Last Name" type="text" [(ngModel)]="newUser.lastName" name="lastname" #lastname="ngModel" required>
                 <mat-error *ngIf="lastname.errors?.required">Last Name is empty</mat-error>
               </mat-form-field>

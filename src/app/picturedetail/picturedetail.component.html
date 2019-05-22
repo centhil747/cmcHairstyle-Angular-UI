@@ -37,6 +37,7 @@
   </div>
 
   <div fxFlex="40" *ngIf="picture" [@visibility]="visibility" [@expand]>
+    <h3 style="margin-bottom: 10em;" *ngIf="picture.comments.length==0">No comments yet. Feel free to share one!</h3>
     <mat-list>
       <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of picture.comments">
@@ -51,7 +52,7 @@
       <p>
         <mat-slider min="1" max="5" step="1" thumbLabel tickInterval="1" name="rating" formControlName="rating"></mat-slider>
         <mat-form-field class="full-width">
-          <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+          <textarea matInput formControlName="comment" placeholder="Your Comment" rows=6></textarea>
           <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
         </mat-form-field>
       </p>

@@ -5,7 +5,7 @@
      fxLayoutAlign.gt-md="space-around center"
      fxLayoutGap="10px">
 
-    <mat-card *ngIf="soloPic" fxFlex [@expand] routerLink="/solo">
+    <mat-card *ngIf="soloPic && groupPic && family" fxFlex [@expand] routerLink="/solo" appHighlight>
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>
@@ -23,7 +23,7 @@
       <h4>{{soloPicErrMess}}</h4>
     </div>
 
-    <mat-card *ngIf="groupPic" fxFlex [@expand] routerLink="/group">
+    <mat-card *ngIf="soloPic && groupPic && family" fxFlex [@expand] routerLink="/group" appHighlight>
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>
@@ -36,7 +36,7 @@
         </p>
       </mat-card-content>
     </mat-card>
-    <div [hidden]="(soloPic || soloPicErrMess) && (groupPic || groupPicErrMess) && (family || familyErrMess)">
+    <div [hidden]="family || familyErrMess">
         <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
     </div>
     <div *ngIf="groupPicErrMess">
@@ -44,11 +44,11 @@
       <h4>{{groupPicErrMess}}</h4>
     </div>
 
-    <mat-card *ngIf="family" fxFlex [@expand] routerLink="/aboutme">
+    <mat-card *ngIf="soloPic && groupPic && family" fxFlex [@expand] routerLink="/aboutme" appHighlight>
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>
-          <h3>Family</h3>
+          <h3>Family Pictures</h3>
         </mat-card-title>
       </mat-card-header>
       <img mat-card-image src="{{ baseURL + family.image }}" alt={{family.name}}>

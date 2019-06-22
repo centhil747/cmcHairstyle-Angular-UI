@@ -26,12 +26,12 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button [routerLink]="['/picturedetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
-        <button mat-button (click)="goBack()"><span class="fa fa-arrow-left fa-lg"></span></button>
-        <button mat-button (click)="addToFavorites()"><span class="{{favorite ? 'fa fa-heart fa-lg' : 'fa fa-heart-o fa-lg'}}"></span></button>
-        <button mat-button><span class="fa fa-share fa-lg"></span></button>
+        <button mat-button matTooltip="Goto Previous Image" [routerLink]="['/picturedetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
+        <button mat-button matTooltip="Goto Previous Screen" (click)="goBack()"><span class="fa fa-arrow-left fa-lg"></span></button>
+        <button mat-button matTooltip="Add to Favorites" (click)="addToFavorites()"><span class="{{favorite ? 'fa fa-heart fa-lg' : 'fa fa-heart-o fa-lg'}}"></span></button>
+        <button mat-button matTooltip="Share to Social Media" ><span class="fa fa-share fa-lg"></span></button>
         <span class="flex-spacer"></span>
-        <button mat-button [routerLink]="['/picturedetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
+        <button mat-button matTooltip="Goto Next Image" [routerLink]="['/picturedetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -44,7 +44,7 @@
         <h4 matLine> {{comment.comment}} </h4>
         <p matLine> {{comment.rating}} Stars</p>
         <p matLine>
-          <span> -- {{comment.author}} {{comment.date | date }} </span>
+          <span> -- {{comment.author}} {{comment.createdAt | date }} </span>
         </p>
       </mat-list-item>
     </mat-list>
@@ -56,7 +56,7 @@
           <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
         </mat-form-field>
       </p>
-      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+      <button type="submit" mat-raised-button class="background-primary text-floral-white" matTooltip="Login to post Comments">Submit</button>
     </form>
   </div>
   <div [hidden]="picture || errMess">

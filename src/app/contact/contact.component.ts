@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut, expand } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-contact',
@@ -19,6 +20,9 @@ import { FeedbackService } from '../services/feedback.service';
   ]
 })
 export class ContactComponent implements OnInit {
+
+  @ViewChild('gmap') gmapElement: any;
+  map: google.maps.Map;
 
   @ViewChild('fform') feedbackFormDirective;
   feedbackForm: FormGroup;
@@ -61,6 +65,14 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+
+    var mapProp = {
+      center: new google.maps.LatLng(11.0250, 76.9037),
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+
   }
 
   createForm() {
@@ -121,6 +133,10 @@ export class ContactComponent implements OnInit {
       message: ''
     });
     this.feedbackFormDirective.resetForm();
+  }
+
+  setMapType(mapTypeId: string) {
+    this.map.setMapTypeId(mapTypeId)    
   }
 
 }

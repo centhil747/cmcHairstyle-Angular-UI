@@ -4,6 +4,7 @@ import { MatTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -100,6 +101,7 @@ export function provideConfig() {
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatListModule,
     MatGridListModule,
     MatCardModule,

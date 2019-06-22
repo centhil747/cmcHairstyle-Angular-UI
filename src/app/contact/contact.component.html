@@ -24,13 +24,19 @@
         </address>
         <p></p>
         <div>
-          <a mat-raised-button href="tel:+85212345678"><i class="fa fa-phone"></i> Call</a>
-          <a mat-raised-button><i class="fa fa-skype"></i> Skype</a>
-          <a mat-raised-button href="mailto:confusion@food.net"><i class="fa fa-envelope-o"></i> Email</a>
+          <a mat-raised-button color="warn" href="tel:+91 9994442292"><i class="fa fa-phone"></i> Call</a>
+          <a mat-raised-button color="accent"><i class="fa fa-skype"></i> Skype</a>
+          <a mat-raised-button color="warn" href="mailto:centhilvalliappan@outlook.com"><i class="fa fa-envelope-o"></i> Email</a>
         </div>
-        </div>
+      </div>
       <div fxFlex="40">
         <h4>Map of our Location</h4>
+        <div>
+          <button mat-raised-button color="primary" (click)="setMapType('terrain')">Terrain</button>
+          <button mat-raised-button color="warn" (click)="setMapType('satellite')">Satellite</button>
+          <button mat-raised-button color="accent" (click)="setMapType('roadmap')">Road Map</button>
+        </div>
+        <div #gmap style="width:100%;height:400px"></div>
       </div>
     </div>
   </div>
@@ -76,7 +82,7 @@
           <textarea matInput formControlName="message" placeholder="Your Feedback" rows=8></textarea>
         </mat-form-field>
       </p>
-      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+      <button type="submit" mat-raised-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
     <div [hidden]="showForm || submitted" [@expand]>
       <h3>Submitting Form</h3>

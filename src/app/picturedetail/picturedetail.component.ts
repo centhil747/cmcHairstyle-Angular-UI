@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { visibility, flyInOut, expand } from '../animations/app.animation';
+import { LoginComponent } from '../login/login.component';
 import { Picture } from '../shared/picture';
 import { Comment } from '../shared/comment';
+
+import { AuthService } from '../services/auth.service';
 import { PictureService } from '../services/picture.service';
 import { FavoriteService } from '../services/favorite.service';
 
@@ -52,10 +56,12 @@ export class PicturedetailComponent implements OnInit {
   commentForm: FormGroup;
 
   constructor(private pictureService: PictureService,
+    private auth: AuthService,
     private favoriteService: FavoriteService,
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
+    public dialog: MatDialog,
     @Inject('baseURL') private baseURL) { }
 
   ngOnInit() {
@@ -101,13 +107,17 @@ export class PicturedetailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.pictureService.postComment(this.picture._id, this.commentForm.value)
-      .subscribe(picture => this.picture = <Picture>picture);
-    this.commentFormDirective.resetForm();
-    this.commentForm.reset({
-      rating: 5,
-      comment: ''
-    });
+    if (!this.auth.isAuthenticated) {
+        this.openLoginForm();
+    } else {
+      this.pictureService.postComment(this.picture._id, this.commentForm.value)
+        .subscribe(picture => this.picture = <Picture>picture);
+      this.commentFormDirective.resetForm();
+      this.commentForm.reset({
+        rating: 5,
+        comment: ''
+      });
+    }
   }
 
   onValueChanged(data?: any) {
@@ -130,10 +140,23 @@ export class PicturedetailComponent implements OnInit {
     }
   }
 
+  openLoginForm() {
+      const loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
+
+      loginRef.afterClosed()
+        .subscribe(result => {
+          console.log(result);
+        });
+  }
+
   addToFavorites() {
     if (!this.favorite) {
-      this.favoriteService.postFavorite(this.picture._id)
-        .subscribe(favorites => { console.log(favorites); this.favorite = true; });
+      if (!this.auth.isAuthenticated) {
+        this.openLoginForm();
+      } else {
+        this.favoriteService.postFavorite(this.picture._id)
+          .subscribe(favorites => { console.log(favorites); this.favorite = true; });
+      }
     }
   }
 }

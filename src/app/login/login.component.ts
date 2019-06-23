@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   errMess: string;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res.success) {
           this.dialogRef.close(res.success);
+          this.openSnackBar('Logged in Successfully', 'Close', 'green-snackbar')
         } else {
           console.log(res);
         }
@@ -48,6 +50,14 @@ export class LoginComponent implements OnInit {
       error => {
         console.log(error);
         this.errMess = error;
+        this.openSnackBar(this.errMess, 'Close', 'red-snackbar')
       });
+  }
+
+  openSnackBar(message: string, action: string, className: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000,
+      panelClass: [className]
+    });
   }
 }
